@@ -3,52 +3,72 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Player : MonoBehaviour
-{
-
-    [SerializeField] private float moveSpeed;
-    [SerializeField] private float jumpForce;
-
-    [SerializeField] private Rigidbody rb;
-    // Start is called before the first frame update
-    void Start()
+namespace Daniel
+{ 
+    public class Player : MonoBehaviour
     {
-        moveSpeed = 5f;
-        jumpForce = 10f;
 
-        rb = GetComponent<Rigidbody>();
-    }
+        [SerializeField] private float moveSpeed;
+        [SerializeField] private float jumpForce;
 
-    // Update is called once per frame
-    void Update()
-    {
-        float moveInput = 0f;
-
-        if (Input.GetKey(KeyCode.A))
+        [SerializeField] private BoxCollider bc;
+        [SerializeField] private ParticleSystem deathEffect;
+        [SerializeField] private Rigidbody rb;
+        [SerializeField] private MeshRenderer MeshRenderer;
+        // Start is called before the first frame update
+        void Start()
         {
-            moveInput = -1f;
-        }
-        else if (Input.GetKey(KeyCode.D))
-        {
-            moveInput = 1f;
+            moveSpeed = 5f;
+            jumpForce = 10f;
+
+            rb = GetComponent<Rigidbody>();
+            deathEffect = GetComponent<ParticleSystem>();
+            bc = GetComponent<BoxCollider>();
+            MeshRenderer = GetComponent<MeshRenderer>();
         }
 
-        transform.Translate(Vector3.right * moveInput * moveSpeed * Time.deltaTime);
+        // Update is called once per frame
+        void Update()
+        {
+            float moveInput = 0f;
+
+            if (Input.GetKey(KeyCode.A))
+            {
+                moveInput = -1f;
+            }
+            else if (Input.GetKey(KeyCode.D))
+            {
+                moveInput = 1f;
+            }
+
+            transform.Translate(Vector3.right * moveInput * moveSpeed * Time.deltaTime);
     
 
-    }
+        }
 
-    private void OnTriggerEnter(Collider collision)
-    {
-        if (collision.gameObject.CompareTag("Platform"))
+        private void OnTriggerEnter(Collider collider)
         {
-            if (rb.velocity.y <= 0f)
+            if (collider.gameObject.CompareTag("Platform"))
             {
-                Vector3 velocity = rb.velocity;
-                velocity.y = jumpForce;
-                rb.velocity = velocity;
+                if (rb.velocity.y <= 0f)
+                {
+                    Vector3 velocity = rb.velocity;
+                    velocity.y = jumpForce;
+                    rb.velocity = velocity;
+                }
+
+            }
+
+            if (collider.gameObject.CompareTag("Death"))
+            {
+                    Debug.Log("you DIed");
+                    deathEffect.Play();
+                    bc.enabled = false;
+                    MeshRenderer.enabled = false;
             }
 
         }
+
+
     }
 }

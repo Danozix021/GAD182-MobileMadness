@@ -2,43 +2,47 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraMovement : MonoBehaviour
+namespace Daniel
 {
-    public Transform player;
-    public float smoothSpeed;
-    public float yDistance;
-
-    private float cameraY;
-
-    // Start is called before the first frame update
-    void Start()
+    public class CameraMovement : MonoBehaviour
     {
-        smoothSpeed = 5f;
-        yDistance = 2f;
-       
-        player = GameObject.FindGameObjectWithTag("Player").transform;
-        if (player == null)
+        public Transform player;
+        public float smoothSpeed;
+        public float yDistance;
+
+        private float cameraY;
+
+        // Start is called before the first frame update
+        void Start()
         {
-            Debug.Log("NO Player Found!!");
-            return;
+            smoothSpeed = 5f;
+            yDistance = 2f;
+       
+            player = GameObject.FindGameObjectWithTag("Player").transform;
+            if (player == null)
+            {
+                Debug.Log("NO Player Found!!");
+                return;
+            }
+
+
+            cameraY = transform.position.y;
+        
         }
 
-
-        cameraY = transform.position.y;
-        
-    }
-
-    private void LateUpdate() // used LateUpdate because i want it to run after the player haas moved udwards and not while the player is moving.
-    {
-        float targetY = player.position.y + yDistance;
-
-
-        if (targetY > cameraY)
+        private void LateUpdate() // used LateUpdate because i want it to run after the player haas moved udwards and not while the player is moving.
         {
-            cameraY = targetY;
+            float targetY = player.position.y + yDistance;
 
-            Vector3 newPos = new Vector3 (transform.position.x, targetY, transform.position.z); // Only moves the camera in the y postion and keeps the x and z the same.
-            transform.position = Vector3.Lerp(transform.position, newPos, smoothSpeed * Time.deltaTime);// smoothly moves the camera to new position.
-        }   
+
+            if (targetY > cameraY)
+            {
+                cameraY = targetY;
+
+                Vector3 newPos = new Vector3 (transform.position.x, targetY, transform.position.z); // Only moves the camera in the y postion and keeps the x and z the same.
+                transform.position = Vector3.Lerp(transform.position, newPos, smoothSpeed * Time.deltaTime);// smoothly moves the camera to new position.
+            }   
+        }
     }
+
 }
