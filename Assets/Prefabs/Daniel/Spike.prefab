@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 4724918037260110006}
   - component: {fileID: 658088001148366589}
   - component: {fileID: 3466505510276580072}
-  - component: {fileID: 3844853307623753886}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Death
@@ -106,15 +105,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3844853307623753886
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 611157559118263825}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d3d5e46d827a764288ef54577bea974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

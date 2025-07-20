@@ -15,8 +15,8 @@ namespace Daniel
         // Start is called before the first frame update
         void Start()
         {
-            smoothSpeed = 5f;
-            yDistance = 2f;
+            smoothSpeed = 7f;
+            yDistance = 10f;
        
             player = GameObject.FindGameObjectWithTag("Player").transform;
             if (player == null)
