@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
 
             isDead = true;
             Time.timeScale = 0;
-            FindObjectOfType<GameManager>().GameOver();
+            FindObjectOfType<UIManager>().GameOver();
 
         }
     }
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
             Time.timeScale = 0;
-            FindObjectOfType<GameManager>().YouWin(); // Call the win screen
+            FindObjectOfType<UIManager>().YouWin(); // Call the win screen
         }
     }
 }
