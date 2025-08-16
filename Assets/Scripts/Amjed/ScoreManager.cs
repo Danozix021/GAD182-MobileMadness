@@ -28,7 +28,7 @@ public class ScoreManager : MonoBehaviour
 
     public void AddScore(int player)
     {
-        if (gameOver) return; // Don't add score if game ended
+        if (gameOver) return; 
 
         if (player == 1)
             player1Score++;
@@ -60,10 +60,10 @@ public class ScoreManager : MonoBehaviour
 
         if (gameOver)
         {
-            // Show the winner text
+           
             winnerText.gameObject.SetActive(true);
 
-            // Disable all Player scripts
+           
             Movement[] players = FindObjectsOfType<Movement>();
             foreach (Movement p in players)
             {

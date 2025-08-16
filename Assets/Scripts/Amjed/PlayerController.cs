@@ -13,11 +13,11 @@ public class PlayerController : MonoBehaviour
     private float verticalVelocity;
     private bool isDead = false;
 
-    private int chosenLane = 1; // 0 = left, 1 = middle, 2 = right
-    public float laneDistance = 1.5f; // adjust this to fit your track
+    private int chosenLane = 1; 
+    public float laneDistance = 1.5f; 
     private float targetX;
 
-    public float laneSwitchSpeed = 10f; // how fast to lerp between lanes
+    public float laneSwitchSpeed = 10f; 
 
     void Start()
     {
@@ -28,10 +28,10 @@ public class PlayerController : MonoBehaviour
     {
         if (isDead) return;
 
-        // Forward movement
+        
         direction = Vector3.forward * forwardSpeed;
 
-        // Lane switching input
+        
         if (Input.GetKeyDown(KeyCode.D))
         {
             chosenLane = Mathf.Min(chosenLane + 1, 2);
@@ -41,16 +41,16 @@ public class PlayerController : MonoBehaviour
             chosenLane = Mathf.Max(chosenLane - 1, 0);
         }
 
-        // Calculate X position for lane switching
+        
         targetX = (chosenLane - 1) * laneDistance;
         float deltaX = targetX - transform.position.x;
         float moveX = deltaX * laneSwitchSpeed;
         direction.x = moveX;
 
-        // Ground check & jumping
+        
         if (controller.isGrounded)
         {
-            verticalVelocity = -0.5f; // Small negative to stay grounded
+            verticalVelocity = -0.5f; 
 
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -67,7 +67,7 @@ public class PlayerController : MonoBehaviour
     void FixedUpdate()
     {
         controller.Move(direction * Time.fixedDeltaTime);
-        if (isDead) return; // Don’t move if dead
+        if (isDead) return; 
         controller.Move(direction * Time.fixedDeltaTime);
     }
     void OnControllerColliderHit(ControllerColliderHit hit)
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             isDead = true;
             Time.timeScale = 0;
-            FindObjectOfType<UIManager>().YouWin(); // Call the win screen
+            FindObjectOfType<UIManager>().YouWin();
         }
     }
 }
