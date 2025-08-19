@@ -67,6 +67,11 @@ namespace Daniel
                     MeshRenderer.enabled = false;
             }
 
+            if (collider.gameObject.CompareTag("finish"))
+            {
+                Debug.Log("You Win!!!!");
+            }
+
         }
 
 

@@ -16,7 +16,7 @@ namespace Daniel
         void Start()
         {
             smoothSpeed = 7f;
-            yDistance = 10f;
+            yDistance = 7f;
        
             player = GameObject.FindGameObjectWithTag("Player").transform;
             if (player == null)
